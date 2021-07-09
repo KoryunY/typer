@@ -12,7 +12,7 @@ public class Repl {
             Game game = new Game();
             System.out.println("1.Start Game");
             System.out.println("2.Print Top List");
-            System.out.println("3.Settings(Clear Top List /Set Game Time(default 20seconds))");
+            System.out.println("3.Settings(Clear Top List /Set Game Time)");
             System.out.println("4.Exit Game");
             cmd = scanner.nextInt();
             switch (cmd) {
@@ -38,7 +38,7 @@ public class Repl {
                             break;
                         case 2:
                             System.out.println("Enter time in seconds.");
-                            game.setTime(scanner.nextInt());
+                            game.writeSetting(scanner.nextLong()*1000);
                             break;
                         case 3:
                             break;
@@ -47,7 +47,8 @@ public class Repl {
                     }
                     break;
                 case 4:
-                    isActive = false;
+                    //isActive = false;
+                    System.exit(0); //without this line never closing
                     break;
                 default:
                     System.out.println("Invalid Command");
