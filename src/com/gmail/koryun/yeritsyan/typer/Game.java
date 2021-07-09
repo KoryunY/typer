@@ -11,8 +11,7 @@ import java.util.*;
 
 public class Game {
     private final String OPTIONS_PATH = "resources\\options.txt";
-    private final Timer timer = new Timer();
-    static TopList topList = new TopList();
+    public static TopList topList = new TopList();
 
     private int currentScore;
     private List<String> words = new WordProvider().getWords();
@@ -49,16 +48,17 @@ public class Game {
     }
 
     public void startGame() throws IOException {
+        Timer timer=new Timer();
         BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
         String currentWord;
         Random random = new Random();
 
         this.startTime= System.currentTimeMillis();
 
-        this.timer.schedule(new TimerTask() {
+        timer.schedule(new TimerTask() {
             @Override
             public void run() {
-                stopGame(bufferedReader);
+                stopGame(bufferedReader,timer);
             }
         }, this.gameTime);
 
@@ -84,7 +84,7 @@ public class Game {
         }
     }
 
-    private void stopGame(BufferedReader bufferedReader) {
+    private void stopGame(BufferedReader bufferedReader,Timer timer) {
         this.isRunning = false;
         try {
             bufferedReader.wait();
@@ -94,6 +94,6 @@ public class Game {
             System.out.println();
             System.out.println("Gamer Over.Type anything to score.");
         }
-        this.timer.cancel();
+        timer.cancel();
     }
 }

@@ -47,12 +47,12 @@ public class Repl {
                     }
                     break;
                 case 4:
-                    //isActive = false;
-                    System.exit(0); //without this line never closing
+                    isActive = false;
                     break;
                 default:
                     System.out.println("Invalid Command");
             }
         }
     }
+
 }
